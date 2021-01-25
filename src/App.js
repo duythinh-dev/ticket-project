@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import Header from "./component/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Atoms from "./component/MUI/index";
+import Home from "./Pages/Home";
+import SignIn from "./Pages/SignIn/index";
+import TicketMain from "./Pages/TicketMain";
+import { CartProvider } from "./component/card-product";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <CartProvider>
+      <Router>
+        <Header />
+        <Atoms.Grid
+          style={{
+            marginTop: "70px",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/SignIn">
+              <SignIn />
+            </Route>
+            <Route path="/Ticket">
+              <TicketMain />
+            </Route>
+          </Switch>
+        </Atoms.Grid>
+      </Router>
+    </CartProvider>
   );
 }
 
