@@ -8,27 +8,38 @@ export class CartProvider extends Component {
     super(props);
     this.state = {
       cartLists: [],
-      numberTicketVtp: 0,
     };
   }
 
+  //  { connt : số luong }
+
   updateCart = (product) => {
-    // console.log(product);
-    console.log(this.state.cartLists.includes(product));
-    if (this.state.cartLists.includes(product)) {
-      this.setState({
-        numberTicketVtp: this.state.numberTicketVtp + 1,
+    const item = [...this.state.cartLists].find((x) => x.id === product.id);
+    // kiem tra xem san pham da co trong cart chua
+    if (item) {
+      const b = [...this.state.cartLists].map((y) => {
+        if (item.id === y.id) {
+          // neu co roi (trùng ID) thì ghi đè biến count + 1 vào biến count của object
+          return { ...y, count: y.count + 1 };
+        }
+        // neu khác ID thi k làm gì cả
+        return { ...y };
       });
-    } else {
       this.setState({
-        cartLists: this.state.cartLists.concat(product),
-        numberTicketVtp: 1,
+        cartLists: [...b],
+      });
+      // sau đó gắn mảng vừa được lọc vào cho cartList
+    } else {
+      // neu san pham chua ton tai trong cart thì thêm object vào mảng cartLists và thêm cho object biến count: 1
+      this.setState({
+        cartLists: [...this.state.cartLists, { ...product, count: 1 }],
       });
     }
   };
 
   updateDeleteCart = (object) => {
-    console.log(object);
+    // Hàm xóa item trong cart
+    // console.log(object);
     this.setState({
       cartLists: this.state.cartLists.filter((x) => x.id !== object.id),
     });
@@ -36,13 +47,11 @@ export class CartProvider extends Component {
 
   render() {
     const { cartLists } = this.state;
-    const { numberTicketVtp } = this.state;
-    console.log(cartLists);
+    // console.log("item trong cart", cartLists);
     return (
       <CartContext.Provider
         value={{
           cartLists,
-          numberTicketVtp,
           updateCart: this.updateCart,
           updateDeleteCart: this.updateDeleteCart,
         }}

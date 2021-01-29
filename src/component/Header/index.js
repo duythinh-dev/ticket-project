@@ -15,8 +15,8 @@ const HeaderStyle = withStyles((theme) => ({
     fontSize: "1.25rem",
     backgroundColor: theme.palette.grey[50],
     top: 0,
-    position: "fixed",
-    transition: "0.3s",
+    // position: "fixed",
+    zIndex: 11,
   },
 }))(Atoms.Grid);
 const LightTooltip = withStyles((theme) => ({

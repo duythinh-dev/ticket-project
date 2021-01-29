@@ -6,26 +6,24 @@ import Home from "./Pages/Home";
 import SignIn from "./Pages/SignIn/index";
 import TicketMain from "./Pages/TicketMain";
 import { CartProvider } from "./component/card-product";
+import history from "./Helper/History";
+import AuthorRoute from "./component/AuthorRouter";
+import Registration from "./Pages/Register";
+
 function App() {
   return (
     <CartProvider>
-      <Router>
+      <Router history={history}>
         <Header />
-        <Atoms.Grid
-          style={{
-            marginTop: "70px",
-          }}
-        >
+        <Atoms.Grid>
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/SignIn">
-              <SignIn />
-            </Route>
-            <Route path="/Ticket">
-              <TicketMain />
-            </Route>
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route path="/SignIn" component={SignIn} />
+            <Route path="/registration" component={Registration} />
+
+            {/* <Route path="/Ticket" component={TicketMain} /> */}
+            <AuthorRoute path="/" component={Home} />
+            <AuthorRoute path="/Ticket" component={TicketMain} />
           </Switch>
         </Atoms.Grid>
       </Router>

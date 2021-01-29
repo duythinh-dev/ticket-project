@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Atoms from "../../component/MUI";
 
-import CardTicket from "../../component/CardTicket";
+import ItemTicket from "../../component/ItemTicket";
 
-function ItemTicket() {
+function ListItemTicket() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -38,7 +38,7 @@ function ItemTicket() {
       .then(
         (result) => {
           setIsLoaded(true);
-          console.log(result);
+          // console.log(result);
           setItems(result);
         },
         // Note: it's important to handle errors here
@@ -110,7 +110,7 @@ function ItemTicket() {
           </Atoms.Grid>
         </Atoms.Box>
         {items.map((item) => (
-          <CardTicket
+          <ItemTicket
             key={item.id}
             img={item.imgCar}
             nameCar={item.nameCar}
@@ -121,10 +121,11 @@ function ItemTicket() {
             endLocation={item.endLocation}
             price={item.price}
             object={items[item.id - 1]}
+            count={item.count}
           />
         ))}
       </>
     );
   }
 }
-export default ItemTicket;
+export default ListItemTicket;

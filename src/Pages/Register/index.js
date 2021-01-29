@@ -2,20 +2,28 @@ import React from "react";
 // import PropsTypes from "prop-types";
 import Atoms from "../../component/MUI";
 import bgimg from "../../img/mountains.jpg";
-function SignIn() {
+import { useDispatch } from "react-redux";
+import { useActions } from "../../actions/user.actions";
+function Registration() {
   const [user, setUser] = React.useState({
+    firstName: "",
+    lastName: "",
     username: "",
     password: "",
   });
   const [submit, setSubmit] = React.useState(false);
+  const dispatch = useDispatch;
 
   function handleChange(e) {
     console.log(e.target.value);
     const { name, value } = e.target;
     setUser((user) => ({ ...user, [name]: value }));
   }
-  const handleSubmit = () => {
-    console.log(user);
+
+  const handleSubmit = (e) => {
+    // e.preventDefault();
+    setSubmit(true);
+    dispatch(useActions.register(user));
   };
   return (
     <Atoms.Box
@@ -42,8 +50,32 @@ function SignIn() {
           <Atoms.Grid item xs={12}>
             <Atoms.Box display="flex" justifyContent="center">
               <Atoms.Typography variant="h4" style={{ fontWeight: 700 }}>
-                Đăng Nhập
+                Đăng Ký
               </Atoms.Typography>
+            </Atoms.Box>
+          </Atoms.Grid>
+          <Atoms.Grid item xs={12}>
+            <Atoms.Box>
+              <Atoms.TextField
+                fullWidth
+                variant="filled"
+                name="firstName"
+                size="small"
+                label="Tài Khoản"
+                onChange={handleChange}
+              ></Atoms.TextField>
+            </Atoms.Box>
+          </Atoms.Grid>
+          <Atoms.Grid item xs={12}>
+            <Atoms.Box>
+              <Atoms.TextField
+                fullWidth
+                variant="filled"
+                name="lastName"
+                size="small"
+                label="Tài Khoản"
+                onChange={handleChange}
+              ></Atoms.TextField>
             </Atoms.Box>
           </Atoms.Grid>
           <Atoms.Grid item xs={12}>
@@ -73,11 +105,6 @@ function SignIn() {
             </Atoms.Box>
           </Atoms.Grid>
           <Atoms.Grid item xs={12}>
-            <Atoms.Box display="flex" justifyContent="flex-end" width="100%">
-              <Atoms.Link href="/registration">Đăng kí</Atoms.Link>
-            </Atoms.Box>
-          </Atoms.Grid>
-          <Atoms.Grid item xs={12}>
             <Atoms.Box display="flex" justifyContent="center">
               <Atoms.Button
                 variant="contained"
@@ -86,7 +113,7 @@ function SignIn() {
                 }}
                 onClick={handleSubmit}
               >
-                Đăng Nhập
+                Đăng Ký
               </Atoms.Button>
             </Atoms.Box>
           </Atoms.Grid>
@@ -96,4 +123,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default Registration;

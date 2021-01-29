@@ -8,12 +8,10 @@ import CheckIcon from "@material-ui/icons/Check";
 import Atoms from "../MUI";
 import { makeStyles } from "@material-ui/core";
 import { CartContext } from "../card-product";
-import NumberTicketSelect from "./NumberTicketSelect";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   media: {
     height: "200px",
     width: "200px",
-    // paddingTop: "56.25%", // 16:9
   },
   seeMore: {
     cursor: "pointer",
@@ -86,7 +84,7 @@ Utilities.PropsTypes = {
   label: PropsTypes.string,
   title: PropsTypes.string,
 };
-function CardTicket({
+function ItemTicket({
   img,
   nameCar,
   numberSeats,
@@ -97,15 +95,14 @@ function CardTicket({
   price,
   object,
   deleteTicket,
+  count,
 }) {
   const classes = useStyles();
   const [utilitiesState, setUtilitiesState] = useState(false);
   const seeUtilities = () => {
     setUtilitiesState(!utilitiesState);
   };
-  // const xs = () => {
-  //   console.log(object);
-  // };
+
   return (
     <div>
       <Atoms.Box component={Atoms.Paper} mt={2} p={2} elevation={3}>
@@ -163,12 +160,7 @@ function CardTicket({
                   <b>{price.toLocaleString()} VNĐ</b>
                 </Atoms.Typography>
               </Atoms.Box>
-              {deleteTicket && (
-                <Atoms.Box display="flex">
-                  <Atoms.Typography>Số vé :</Atoms.Typography>
-                  <NumberTicketSelect />
-                </Atoms.Box>
-              )}
+
               {!deleteTicket && (
                 <Atoms.Box
                   width="100%"
@@ -184,26 +176,6 @@ function CardTicket({
                         onClick={() => updateCart(object)}
                       >
                         Thêm vé vào giỏ
-                      </Atoms.Button>
-                    )}
-                  </CartContext.Consumer>
-                </Atoms.Box>
-              )}
-              {deleteTicket && (
-                <Atoms.Box
-                  width="100%"
-                  display="flex"
-                  justifyContent="flex-end"
-                  mt="100%"
-                >
-                  <CartContext.Consumer>
-                    {({ updateDeleteCart }) => (
-                      <Atoms.Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => updateDeleteCart(object)}
-                      >
-                        Hủy vé
                       </Atoms.Button>
                     )}
                   </CartContext.Consumer>
@@ -241,8 +213,8 @@ function CardTicket({
   );
 }
 
-export default CardTicket;
-CardTicket.propsTypes = {
+export default ItemTicket;
+ItemTicket.propsTypes = {
   img: PropsTypes.any,
   nameCar: PropsTypes.string,
   timeStart: PropsTypes.any,
@@ -252,6 +224,7 @@ CardTicket.propsTypes = {
   price: PropsTypes.any,
   object: PropsTypes.any,
   deleteTicket: PropsTypes.bool,
+  count: PropsTypes.number,
 };
 // CardTicket.defaultProps = {
 //   nameCar: "Xe việt tân phát",
