@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./component/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Atoms from "./component/MUI/index";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/SignIn/index";
 import TicketMain from "./Pages/TicketMain";
