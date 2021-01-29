@@ -9,23 +9,19 @@ import { CartProvider } from "./component/card-product";
 import history from "./Helper/History";
 import AuthorRoute from "./component/AuthorRouter";
 import Registration from "./Pages/Register";
-
+import { configureFakeBackend } from "./Helper/fakeBackend.help";
+configureFakeBackend();
 function App() {
   return (
     <CartProvider>
       <Router history={history}>
         <Header />
-        <Atoms.Grid>
-          <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
-            <Route path="/SignIn" component={SignIn} />
-            <Route path="/registration" component={Registration} />
-
-            {/* <Route path="/Ticket" component={TicketMain} /> */}
-            <AuthorRoute path="/" component={Home} />
-            <AuthorRoute path="/Ticket" component={TicketMain} />
-          </Switch>
-        </Atoms.Grid>
+        <Switch>
+          <Route path="/SignIn" component={SignIn} />
+          <Route path="/registration" component={Registration} />
+          <AuthorRoute exact path="/" component={Home} />
+          <AuthorRoute exact path="/Ticket" component={TicketMain} />
+        </Switch>
       </Router>
     </CartProvider>
   );

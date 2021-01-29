@@ -31,25 +31,6 @@ const LightTooltip = withStyles((theme) => ({
   },
 }))(Atoms.Tooltip);
 function Header() {
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleTooltipClose = () => {
-  //   setOpen(false);
-  // };
-
-  // const handleTooltipOpen = () => {
-  //   setOpen(true);
-  // };
-  // var prevScrollpos = window.pageYOffset;
-  // window.onscroll = function () {
-  //   var currentScrollPos = window.pageYOffset;
-  //   if (prevScrollpos > currentScrollPos) {
-  //     document.getElementById("navbar").style.top = 0;
-  //   } else {
-  //     document.getElementById("navbar").style.top = "-80px";
-  //   }
-  //   prevScrollpos = currentScrollPos;
-  // };
   return (
     <>
       <HeaderStyle container alignItems="center" id="navbar">
@@ -121,15 +102,30 @@ function Header() {
               </Atoms.Button>
             </LightTooltip>
             &nbsp;
-            <Atoms.Button
-              variant="contained"
-              color="primary"
-              startIcon={<AccountCircleIcon />}
-              component={Link}
-              to="/SignIn"
-            >
-              Đăng Nhập
-            </Atoms.Button>
+            {localStorage.getItem("user") ? (
+              <Atoms.Button
+                variant="contained"
+                color="primary"
+                startIcon={<AccountCircleIcon />}
+                component={Link}
+                onClick={() => {
+                  localStorage.removeItem("user");
+                }}
+                to="/SignIn"
+              >
+                Đăng Xuất
+              </Atoms.Button>
+            ) : (
+              <Atoms.Button
+                variant="contained"
+                color="primary"
+                startIcon={<AccountCircleIcon />}
+                component={Link}
+                to="/SignIn"
+              >
+                Đăng Nhập
+              </Atoms.Button>
+            )}
           </Atoms.Box>
         </Atoms.Grid>
       </HeaderStyle>

@@ -1,9 +1,12 @@
 import React from "react";
 // import PropsTypes from "prop-types";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 import Atoms from "../../component/MUI";
 import bgimg from "../../img/mountains.jpg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useActions } from "../../actions/user.actions";
+import { registerReduce } from "../../reducers/register.reducer";
 function Registration() {
   const [user, setUser] = React.useState({
     firstName: "",
@@ -12,8 +15,9 @@ function Registration() {
     password: "",
   });
   const [submit, setSubmit] = React.useState(false);
-  const dispatch = useDispatch;
-
+  const dispatch = useDispatch();
+  const disBackdrop = useSelector((state) => state.registerReduce.backdrop);
+  console.log(disBackdrop);
   function handleChange(e) {
     console.log(e.target.value);
     const { name, value } = e.target;
@@ -23,7 +27,9 @@ function Registration() {
   const handleSubmit = (e) => {
     // e.preventDefault();
     setSubmit(true);
-    dispatch(useActions.register(user));
+    if (user.firstName && user.lastName && user.username && user.password) {
+      dispatch(useActions.register(user));
+    }
   };
   return (
     <Atoms.Box
@@ -61,7 +67,7 @@ function Registration() {
                 variant="filled"
                 name="firstName"
                 size="small"
-                label="Tài Khoản"
+                label="First Name"
                 onChange={handleChange}
               ></Atoms.TextField>
             </Atoms.Box>
@@ -73,7 +79,7 @@ function Registration() {
                 variant="filled"
                 name="lastName"
                 size="small"
-                label="Tài Khoản"
+                label="Last Name"
                 onChange={handleChange}
               ></Atoms.TextField>
             </Atoms.Box>
@@ -112,12 +118,18 @@ function Registration() {
                   backgroundImage: `linear-gradient(to right, #eba879 0%, #EAECC6 80%, #eba879 100%)`,
                 }}
                 onClick={handleSubmit}
+                type="submit"
               >
                 Đăng Ký
               </Atoms.Button>
             </Atoms.Box>
           </Atoms.Grid>
         </Atoms.Grid>
+        {disBackdrop && (
+          <Atoms.Backdrop open={true}>
+            <CircularProgress color="inherit" />
+          </Atoms.Backdrop>
+        )}
       </Atoms.Box>
     </Atoms.Box>
   );

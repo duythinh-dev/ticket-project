@@ -1,21 +1,33 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { useActions } from "../../actions/user.actions";
 // import PropsTypes from "prop-types";
 import Atoms from "../../component/MUI";
+import History from "../../Helper/History";
 import bgimg from "../../img/mountains.jpg";
+
 function SignIn() {
   const [user, setUser] = React.useState({
     username: "",
     password: "",
   });
-  const [submit, setSubmit] = React.useState(false);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   function handleChange(e) {
     console.log(e.target.value);
     const { name, value } = e.target;
     setUser((user) => ({ ...user, [name]: value }));
   }
-  const handleSubmit = () => {
-    console.log(user);
+
+  const handleSubmit = (e) => {
+    // console.log(user);
+    if (user.username && user.password) {
+      const { from } = location.state || { from: { pathname: "/" } };
+      dispatch(useActions.login(user, from));
+      History.push(from);
+    }
   };
   return (
     <Atoms.Box

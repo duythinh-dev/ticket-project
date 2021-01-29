@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Atoms from "../../component/MUI";
 
@@ -7,6 +8,7 @@ function ListItemTicket() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+
   const [car, setCar] = useState(
     "https://5ff9781017386d0017b51dc9.mockapi.io/api/v1/ticketAll"
   );
@@ -29,17 +31,21 @@ function ListItemTicket() {
       "https://5ff9781017386d0017b51dc9.mockapi.io/api/v1/ticketSortUpPice"
     );
   };
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const request = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+
   useEffect(() => {
-    fetch(`${car}`)
+    fetch(`${car}`, request)
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           // console.log(result);
           setItems(result);
+          console.log(result);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -109,21 +115,22 @@ function ListItemTicket() {
             </Atoms.Grid>
           </Atoms.Grid>
         </Atoms.Box>
-        {items.map((item) => (
-          <ItemTicket
-            key={item.id}
-            img={item.imgCar}
-            nameCar={item.nameCar}
-            numberSeats={item.numberSeats}
-            timeStart={item.timeStart}
-            timeEnd={item.timeEnd}
-            startingPlace={item.startingPlace}
-            endLocation={item.endLocation}
-            price={item.price}
-            object={items[item.id - 1]}
-            count={item.count}
-          />
-        ))}
+        {items &&
+          items.map((item) => (
+            <ItemTicket
+              key={item.id}
+              img={item.imgCar}
+              nameCar={item.nameCar}
+              numberSeats={item.numberSeats}
+              timeStart={item.timeStart}
+              timeEnd={item.timeEnd}
+              startingPlace={item.startingPlace}
+              endLocation={item.endLocation}
+              price={item.price}
+              object={items[item.id - 1]}
+              count={item.count}
+            />
+          ))}
       </>
     );
   }
