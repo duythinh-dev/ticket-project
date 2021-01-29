@@ -13,7 +13,7 @@ import { CartContext } from "./card-product";
 const useStyles = makeStyles((theme) => ({
   media: {
     height: "200px",
-    width: "200px",
+    width: "100%",
     // paddingTop: "56.25%", // 16:9
   },
   seeMore: {
@@ -110,14 +110,14 @@ function ItemOnCard({
     <div>
       <Atoms.Box component={Atoms.Paper} mt={2} p={2} elevation={3}>
         <Atoms.Grid container spacing={1}>
-          <Atoms.Grid item lg={3}>
+          <Atoms.Grid item lg={3} md={3} sm={12} xs={12}>
             <Atoms.CardMedia
               className={classes.media}
               image={img}
               title="Paella dish"
             />
           </Atoms.Grid>
-          <Atoms.Grid item lg={5}>
+          <Atoms.Grid item lg={5} md={5} sm={12} xs={12}>
             <Atoms.Typography variant="h5" color="primary">
               <b>{nameCar}</b>
             </Atoms.Typography>
@@ -141,7 +141,7 @@ function ItemOnCard({
               <Atoms.Typography>&nbsp; {endLocation}</Atoms.Typography>
             </Atoms.Box>
           </Atoms.Grid>
-          <Atoms.Grid item lg={2}>
+          <Atoms.Grid item lg={2} md={2} sm={12} xs={12}>
             <Atoms.Box display="flex" alignItems="flex-end" height="100%">
               <Atoms.Box
                 display="flex"
@@ -156,15 +156,14 @@ function ItemOnCard({
               </Atoms.Box>
             </Atoms.Box>
           </Atoms.Grid>
-          <Atoms.Grid item lg={2}>
+          <Atoms.Grid item lg={2} md={2} sm={12} xs={12}>
             <Atoms.Box>
-              <Atoms.Box width="100%" display="flex" justifyContent="flex-end">
+              <Atoms.Box display="flex" justifyContent="flex-end">
                 <Atoms.Typography color="primary">
-                  <b>{money.toLocaleString()} VNĐ</b>
+                  Giá : <b>{money.toLocaleString()} VNĐ</b>
                 </Atoms.Typography>
               </Atoms.Box>
-
-              <Atoms.Box display="flex">
+              <Atoms.Box display="flex" justifyContent="flex-end" mt={2}>
                 <Atoms.Typography>Số vé :</Atoms.Typography>
                 <Atoms.Badge badgeContent={object.count} color="secondary">
                   <ConfirmationNumberIcon />
@@ -175,7 +174,7 @@ function ItemOnCard({
                 width="100%"
                 display="flex"
                 justifyContent="flex-end"
-                mt="100%"
+                mt={2}
               >
                 <CartContext.Consumer>
                   {({ updateDeleteCart }) => (

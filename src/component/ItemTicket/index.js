@@ -11,7 +11,7 @@ import { CartContext } from "../card-product";
 const useStyles = makeStyles(() => ({
   media: {
     height: "200px",
-    width: "200px",
+    width: "100%",
   },
   seeMore: {
     cursor: "pointer",
@@ -107,14 +107,14 @@ function ItemTicket({
     <div>
       <Atoms.Box component={Atoms.Paper} mt={2} p={2} elevation={3}>
         <Atoms.Grid container spacing={1}>
-          <Atoms.Grid item lg={3}>
+          <Atoms.Grid item lg={3} md={3} xs={12}>
             <Atoms.CardMedia
               className={classes.media}
               image={img}
               title="Paella dish"
             />
           </Atoms.Grid>
-          <Atoms.Grid item lg={5}>
+          <Atoms.Grid item lg={5} md={4} xs={12}>
             <Atoms.Typography variant="h5" color="primary">
               <b>{nameCar}</b>
             </Atoms.Typography>
@@ -138,7 +138,7 @@ function ItemTicket({
               <Atoms.Typography>&nbsp; {endLocation}</Atoms.Typography>
             </Atoms.Box>
           </Atoms.Grid>
-          <Atoms.Grid item lg={2}>
+          <Atoms.Grid item lg={2} md={2} xs={12}>
             <Atoms.Box display="flex" alignItems="flex-end" height="100%">
               <Atoms.Box
                 display="flex"
@@ -153,34 +153,31 @@ function ItemTicket({
               </Atoms.Box>
             </Atoms.Box>
           </Atoms.Grid>
-          <Atoms.Grid item lg={2}>
+          <Atoms.Grid item lg={2} md={3} xs={12}>
             <Atoms.Box>
               <Atoms.Box width="100%" display="flex" justifyContent="flex-end">
                 <Atoms.Typography color="primary">
-                  <b>{price.toLocaleString()} VNĐ</b>
+                  Giá :<b>{price.toLocaleString()} VNĐ</b>
                 </Atoms.Typography>
               </Atoms.Box>
-
-              {!deleteTicket && (
-                <Atoms.Box
-                  width="100%"
-                  display="flex"
-                  justifyContent="flex-end"
-                  mt="100%"
-                >
-                  <CartContext.Consumer>
-                    {({ updateCart }) => (
-                      <Atoms.Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => updateCart(object)}
-                      >
-                        Thêm vé vào giỏ
-                      </Atoms.Button>
-                    )}
-                  </CartContext.Consumer>
-                </Atoms.Box>
-              )}
+              <Atoms.Box
+                width="100%"
+                display="flex"
+                justifyContent="flex-end"
+                mt={2}
+              >
+                <CartContext.Consumer>
+                  {({ updateCart }) => (
+                    <Atoms.Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => updateCart(object)}
+                    >
+                      Thêm vé vào giỏ
+                    </Atoms.Button>
+                  )}
+                </CartContext.Consumer>
+              </Atoms.Box>
             </Atoms.Box>
           </Atoms.Grid>
         </Atoms.Grid>

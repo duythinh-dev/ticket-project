@@ -1,5 +1,5 @@
 import React from "react";
-import MinimizeIcon from "@material-ui/icons/Minimize";
+import ForwardIcon from "@material-ui/icons/Forward";
 import imgmain from "../../img/main.png";
 import Atoms from "../../component/MUI";
 // import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
@@ -48,55 +48,35 @@ function Home() {
             <Atoms.Grid container spacing={1} justify="center">
               <Atoms.Grid
                 item
-                xs={3}
+                lg={3}
+                md={3}
+                xs={12}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Atoms.Typography variant="h4" color="primary">
                   <b>Nơi xuất phát : </b>
                 </Atoms.Typography>
               </Atoms.Grid>
-              <Atoms.Grid item xs={3}>
+              <Atoms.Grid item lg={7} md={7} xs={12}>
                 <Atoms.Box
                   height="100%"
                   display="flex"
                   alignItems="center"
-                  justifyContent="center"
+                  justifyContent="space-around"
                 >
-                  <RoomIcon color="error" />
-                  &nbsp;
                   <Atoms.Typography variant="h5" color="error">
+                    <RoomIcon color="error" /> &nbsp;
                     <b>Tp Hồ Chí Minh</b>
                   </Atoms.Typography>
-                </Atoms.Box>
-              </Atoms.Grid>
-              <Atoms.Grid item xs={1}>
-                <Atoms.Box
-                  height="100%"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <MinimizeIcon />
-                  <MinimizeIcon />
-                  <MinimizeIcon />
-                  <MinimizeIcon />
-                </Atoms.Box>
-              </Atoms.Grid>
-              <Atoms.Grid item xs={3}>
-                <Atoms.Box
-                  height="100%"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <RoomIcon color="error" />
-                  &nbsp;
+                  <ForwardIcon />
                   <Atoms.Typography variant="h5" color="error">
+                    <RoomIcon color="error" />
+                    &nbsp;
                     <b>Tp Kon Tum</b>
                   </Atoms.Typography>
                 </Atoms.Box>
               </Atoms.Grid>
-              <Atoms.Grid item xs={2}>
+              <Atoms.Grid item xs={12} lg={2} md={2}>
                 <Atoms.Button
                   variant="contained"
                   color="secondary"

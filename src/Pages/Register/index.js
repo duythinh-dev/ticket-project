@@ -6,7 +6,6 @@ import Atoms from "../../component/MUI";
 import bgimg from "../../img/mountains.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useActions } from "../../actions/user.actions";
-import { registerReduce } from "../../reducers/register.reducer";
 function Registration() {
   const [user, setUser] = React.useState({
     firstName: "",
@@ -14,7 +13,7 @@ function Registration() {
     username: "",
     password: "",
   });
-  const [submit, setSubmit] = React.useState(false);
+  // const [submit, setSubmit] = React.useState(false);
   const dispatch = useDispatch();
   const disBackdrop = useSelector((state) => state.registerReduce.backdrop);
   console.log(disBackdrop);
@@ -26,7 +25,7 @@ function Registration() {
 
   const handleSubmit = (e) => {
     // e.preventDefault();
-    setSubmit(true);
+    // setSubmit(true);
     if (user.firstName && user.lastName && user.username && user.password) {
       dispatch(useActions.register(user));
     }
