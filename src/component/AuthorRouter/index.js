@@ -7,7 +7,11 @@ function AuthorRoute({ component: Component, ...rest }) {
       {...rest}
       render={(props) => {
         if (!localStorage.getItem("user")) {
-          return <Redirect to={{ pathname: "/SignIn" }} />;
+          return (
+            <Redirect
+              to={{ pathname: "/SignIn", state: { from: props.location } }}
+            />
+          );
         }
         return <Component {...props} />;
       }}

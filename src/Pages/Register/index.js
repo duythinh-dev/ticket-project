@@ -16,9 +16,9 @@ function Registration() {
   // const [submit, setSubmit] = React.useState(false);
   const dispatch = useDispatch();
   const disBackdrop = useSelector((state) => state.registerReduce.backdrop);
-  console.log(disBackdrop);
+  // console.log(disBackdrop);
   function handleChange(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const { name, value } = e.target;
     setUser((user) => ({ ...user, [name]: value }));
   }
@@ -32,8 +32,8 @@ function Registration() {
   };
   return (
     <Atoms.Box
-      height="88.5vh"
       style={{
+        height: "88.5vh",
         backgroundImage: `url(${bgimg})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 100%",
@@ -51,6 +51,7 @@ function Registration() {
           height: "350px",
         }}
       >
+        {/* <form noValidate> */}
         <Atoms.Grid container spacing={2}>
           <Atoms.Grid item xs={12}>
             <Atoms.Box display="flex" justifyContent="center">
@@ -129,6 +130,7 @@ function Registration() {
             <CircularProgress color="inherit" />
           </Atoms.Backdrop>
         )}
+        {/* </form> */}
       </Atoms.Box>
     </Atoms.Box>
   );

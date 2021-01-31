@@ -5,9 +5,10 @@ import { useService } from "../services/user.service";
 export const useActions = {
   register,
   login,
+  logout,
 };
 function register(user) {
-  console.log(user);
+  // console.log(user);
   return (dispatch) => {
     dispatch(request(user));
     useService.register(user).then(
@@ -48,15 +49,16 @@ function login(user, from) {
 
     useService.login(user).then(
       (data) => {
+        console.log("thanhcong", data);
         dispatch(success(data));
         History.push(from);
       },
       (error) => {
+        console.log("loi roi", error);
         dispatch(failure(error.toString()));
       }
     );
   };
-
   function request(user) {
     return { type: useConstants.LOGIN_REQUEST, user };
   }
@@ -66,4 +68,9 @@ function login(user, from) {
   function failure(user) {
     return { type: useConstants.LOGIN_FAILURE, user };
   }
+}
+
+function logout() {
+  useService.logout();
+  return { type: useConstants.LOG_OUT };
 }

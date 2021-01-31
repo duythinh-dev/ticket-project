@@ -22,6 +22,8 @@ function SignIn() {
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     // console.log(user);
     if (user.username && user.password) {
       const { from } = location.state || { from: { pathname: "/" } };

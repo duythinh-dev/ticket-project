@@ -5,6 +5,8 @@ import PhoneCallbackIcon from "@material-ui/icons/PhoneCallback";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
+// import { useSelector } from "react-redux";
+
 const MenuItems = (props) => {
   const { to, ...other } = props;
   return <Atoms.MenuItem component={Link} to={to} {...other}></Atoms.MenuItem>;
@@ -30,7 +32,11 @@ const LightTooltip = withStyles((theme) => ({
     color: theme.palette.common.white,
   },
 }))(Atoms.Tooltip);
+
 function Header() {
+  const loggingIn = localStorage.getItem("state");
+  // console.log(loggingIn === "true");
+
   return (
     <>
       <HeaderStyle container alignItems="center" id="navbar">
@@ -99,7 +105,7 @@ function Header() {
                 </Atoms.Button>
               </LightTooltip>
               &nbsp;
-              {localStorage.getItem("user") ? (
+              {loggingIn === "true" ? (
                 <Atoms.Button
                   variant="contained"
                   color="primary"
@@ -107,6 +113,7 @@ function Header() {
                   component={Link}
                   onClick={() => {
                     localStorage.removeItem("user");
+                    localStorage.setItem("state", false);
                   }}
                   to="/SignIn"
                 >

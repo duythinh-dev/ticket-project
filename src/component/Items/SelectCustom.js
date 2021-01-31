@@ -6,7 +6,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 export default function SelectCustom({ options, label }) {
   const [value, setValue] = React.useState(options[0]);
-  console.log(value);
+  // console.log(value);
 
   return (
     <Autocomplete

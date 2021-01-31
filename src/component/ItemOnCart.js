@@ -104,7 +104,7 @@ function ItemOnCard({
   const seeUtilities = () => {
     setUtilitiesState(!utilitiesState);
   };
-  console.log(object.count, "bien cout day");
+  // console.log(object.count, "bien cout day");
   const money = price * object.count;
   return (
     <div>
