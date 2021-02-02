@@ -9,5 +9,3 @@
 - Trong giỏ hàng hiển thị danh sách sản phẩm của mình, hiển thị số lượng, hiển thị tổng tiền cho số lượng vé tương ứng, có thể xóa sản phẩm trong Cart
 
                         ---------------------------------------------------------------------
-
-- Button Đăng Xuất Của em đang bị vấn đề, nó không tự thay đổi, phải tự tay reload lại mới đổi

@@ -5,7 +5,10 @@ import PhoneCallbackIcon from "@material-ui/icons/PhoneCallback";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+import { useActions } from "../../actions/user.actions";
 
 const MenuItems = (props) => {
   const { to, ...other } = props;
@@ -34,8 +37,9 @@ const LightTooltip = withStyles((theme) => ({
 }))(Atoms.Tooltip);
 
 function Header() {
-  const loggingIn = localStorage.getItem("state");
-  // console.log(loggingIn === "true");
+  const dispatch = useDispatch();
+  const loggingIn = useSelector((state) => state.loginReduce.loggingIn);
+  console.log("loggingIn", loggingIn);
 
   return (
     <>
@@ -105,16 +109,14 @@ function Header() {
                 </Atoms.Button>
               </LightTooltip>
               &nbsp;
-              {loggingIn === "true" ? (
+              {loggingIn ? (
                 <Atoms.Button
                   variant="contained"
                   color="primary"
                   startIcon={<AccountCircleIcon />}
                   component={Link}
-                  onClick={() => {
-                    localStorage.removeItem("user");
-                    localStorage.setItem("state", false);
-                  }}
+                  // onClick={useService.logout}
+                  onClick={() => dispatch(useActions.logout())}
                   to="/SignIn"
                 >
                   Đăng Xuất

@@ -9,11 +9,11 @@ export function loginReduce(state = initialState, action) {
       return {};
     case useConstants.LOGIN_SUCCESS:
       return {
-        loggingIn: "true",
+        loggingIn: true,
       };
     case useConstants.LOG_OUT:
       return {
-        loggingIn: "false",
+        loggingIn: false,
       };
     case useConstants.LOGIN_FAILURE:
       return {};

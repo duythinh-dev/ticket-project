@@ -2,6 +2,7 @@
 export const useService = {
   register,
   login,
+  logout,
 };
 function register(user) {
   const request = {
