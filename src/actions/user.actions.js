@@ -6,6 +6,7 @@ export const useActions = {
   register,
   login,
   logout,
+  closeDialog,
 };
 function register(user) {
   // console.log(user);
@@ -73,4 +74,7 @@ function login(user, from) {
 function logout() {
   useService.logout();
   return { type: useConstants.LOG_OUT };
+}
+function closeDialog() {
+  return { type: useConstants.LOGIN_REQUEST };
 }

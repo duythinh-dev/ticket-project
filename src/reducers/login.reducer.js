@@ -6,7 +6,7 @@ const initialState = {
 export function loginReduce(state = initialState, action) {
   switch (action.type) {
     case useConstants.LOGIN_REQUEST:
-      return {};
+      return { loggingFalse: false };
     case useConstants.LOGIN_SUCCESS:
       return {
         loggingIn: true,
@@ -16,7 +16,9 @@ export function loginReduce(state = initialState, action) {
         loggingIn: false,
       };
     case useConstants.LOGIN_FAILURE:
-      return {};
+      return {
+        loggingFalse: true,
+      };
     //   break;
 
     default:

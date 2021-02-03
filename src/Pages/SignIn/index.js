@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import { useActions } from "../../actions/user.actions";
 // import PropsTypes from "prop-types";
 import Atoms from "../../component/MUI";
@@ -12,6 +12,9 @@ function SignIn() {
     username: "",
     password: "",
   });
+  // const [open, setOpen] = React.useState(false);
+  const loggingIn = useSelector((state) => state.loginReduce.loggingFalse);
+
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -103,6 +106,35 @@ function SignIn() {
                 Đăng Nhập
               </Atoms.Button>
             </Atoms.Box>
+            <Atoms.Dialog
+              open={loggingIn || false}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <Atoms.DialogTitle id="alert-dialog-title">
+                {"Đã có lỗi khi đăng nhập"}
+              </Atoms.DialogTitle>
+              <Atoms.DialogContent>
+                <Atoms.Typography color="error">
+                  Thông tin đăng nhập không chính xác, vui lòng nhập lại, nếu
+                  chưa có tài khoản vui lòng đăng kí tài khoản
+                </Atoms.Typography>
+              </Atoms.DialogContent>
+              <Atoms.DialogActions>
+                <Atoms.Button
+                  color="primary"
+                  onClick={() => dispatch(useActions.closeDialog())}
+                >
+                  Đóng
+                </Atoms.Button>
+                <Link
+                  to="/registration"
+                  onClick={() => dispatch(useActions.closeDialog())}
+                >
+                  Đăng ký
+                </Link>
+              </Atoms.DialogActions>
+            </Atoms.Dialog>
           </Atoms.Grid>
         </Atoms.Grid>
       </Atoms.Box>
